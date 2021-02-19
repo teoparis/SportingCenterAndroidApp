@@ -46,11 +46,11 @@ public class LoginActivity extends AppCompatActivity {
         String password = etPassword.getText().toString().trim();
 
         if (userName.isEmpty()) {
-            etUsername.setError("Username is required");
+            etUsername.setError("Inserisci l'Username");
             etUsername.requestFocus();
             return;
         } else if (password.isEmpty()) {
-            etPassword.setError("Password is required");
+            etPassword.setError("Inserisci la Password");
             etPassword.requestFocus();
             return;
         }
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else
-                        Toast.makeText(com.example.sportingcenterandroidapp.LoginActivity.this, "Non hai il ruolo per accedere!!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(com.example.sportingcenterandroidapp.LoginActivity.this, "Non hai il ruolo per accedere!", Toast.LENGTH_LONG).show();
             } else {
                     Toast.makeText(com.example.sportingcenterandroidapp.LoginActivity.this, "Errore nel login!", Toast.LENGTH_LONG).show();
                 }

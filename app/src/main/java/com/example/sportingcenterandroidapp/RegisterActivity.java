@@ -52,11 +52,11 @@ public class RegisterActivity extends AppCompatActivity {
         String repeatPassword = etRepeatPassword.getText().toString().trim();
 
         if (userName.isEmpty()) {
-            etUsername.setError("Username is required");
+            etUsername.setError("Inserisci l'Username");
             etUsername.requestFocus();
             return;
         } else if (password.isEmpty()) {
-            etPassword.setError("Password is required");
+            etPassword.setError("Inserisci la Password");
             etPassword.requestFocus();
             return;
         }
