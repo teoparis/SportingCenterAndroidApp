@@ -24,7 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PrenotatiActivity extends AppCompatActivity {
-    ArrayList<String> selectedItems;
+    ArrayList<UserTwo> selectedItems;
     Context context=this;
 
     @Override
@@ -34,7 +34,7 @@ public class PrenotatiActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle.getInt("evento")!= 0)
         {
-            selectedItems=new ArrayList<String>();
+            selectedItems=new ArrayList<UserTwo>();
             SharedPreferences preferences= com.example.sportingcenterandroidapp.PrenotatiActivity.this.getSharedPreferences("sporting_center",Context.MODE_PRIVATE);
             String accessToken  = preferences.getString("token",null);//second parameter default value.
             Integer id = bundle.getInt("evento");
@@ -53,15 +53,15 @@ public class PrenotatiActivity extends AppCompatActivity {
                         list=response.body();
                         PrenotatiActivity.CustomAdapter adapter = new PrenotatiActivity.CustomAdapter(context, R.layout.activity_list, list);
                         listView.setAdapter(adapter);
+                        final List<UserTwo> finalList = list;
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 // selected item
-                                String selectedItem = ((TextView) view).getText().toString();
+                                UserTwo selectedItem = finalList.get(position);
                                 if(selectedItems.contains(selectedItem))
                                     selectedItems.remove(selectedItem); //remove deselected item from the list of selected items
                                 else
                                     selectedItems.add(selectedItem); //add selected item to the list of selected items
-
                             }
 
                         });
@@ -103,9 +103,9 @@ public class PrenotatiActivity extends AppCompatActivity {
 
     public void showSelectedItems(View view){
         String selItems="";
-        for(String item:selectedItems){
+        for(UserTwo item:selectedItems){
             if(selItems=="")
-                selItems=item;
+                selItems=item.getDisplayName();
             else
                 selItems+="/"+item;
         }
