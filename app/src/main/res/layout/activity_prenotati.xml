@@ -52,16 +52,17 @@
         <ListView
             android:id="@+id/listViewDemo2"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            >
 
-        <ProgressBar
-            android:id="@+id/progressBarLoading"
-            style="?android:attr/progressBarStyleLarge"
+        </ListView>
+        <Button
+            android:id="@+id/btshow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="8dp"
-            android:visibility="gone" />
+            android:onClick="showSelectedItems"
+            android:text="Show selected items"
+            />
 
 
     </LinearLayout>

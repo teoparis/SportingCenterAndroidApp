@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PrenotatiActivity extends AppCompatActivity {
+    ArrayList<String> selectedItems;
     Context context=this;
 
     @Override
@@ -32,6 +34,7 @@ public class PrenotatiActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle.getInt("evento")!= 0)
         {
+            selectedItems=new ArrayList<String>();
             SharedPreferences preferences= com.example.sportingcenterandroidapp.PrenotatiActivity.this.getSharedPreferences("sporting_center",Context.MODE_PRIVATE);
             String accessToken  = preferences.getString("token",null);//second parameter default value.
             Integer id = bundle.getInt("evento");
@@ -50,13 +53,17 @@ public class PrenotatiActivity extends AppCompatActivity {
                         list=response.body();
                         PrenotatiActivity.CustomAdapter adapter = new PrenotatiActivity.CustomAdapter(context, R.layout.activity_list, list);
                         listView.setAdapter(adapter);
-                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                Intent intent = new Intent(context, RegisterActivity.class);
-                                intent.putExtra("position", i);
-                                startActivity(intent);
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                // selected item
+                                String selectedItem = ((TextView) view).getText().toString();
+                                if(selectedItems.contains(selectedItem))
+                                    selectedItems.remove(selectedItem); //remove deselected item from the list of selected items
+                                else
+                                    selectedItems.add(selectedItem); //add selected item to the list of selected items
+
                             }
+
                         });
 
                     } else {
@@ -92,6 +99,17 @@ public class PrenotatiActivity extends AppCompatActivity {
             nome.setText(c.getDisplayName()+"    "+c.getEmail());
             return convertView;
         }
+    }
+
+    public void showSelectedItems(View view){
+        String selItems="";
+        for(String item:selectedItems){
+            if(selItems=="")
+                selItems=item;
+            else
+                selItems+="/"+item;
+        }
+        Toast.makeText(this, selItems, Toast.LENGTH_LONG).show();
     }
 }
 
