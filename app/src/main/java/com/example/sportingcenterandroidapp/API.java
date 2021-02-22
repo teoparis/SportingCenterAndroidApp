@@ -7,6 +7,8 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface API {
 
@@ -23,6 +25,11 @@ public interface API {
     @GET("trainer/todayevents")
     Call<List<ResponseEvento>> todayEvents(
 
+    );
+
+    @GET("trainer/getusers/{id}")
+    Call<List<UserTwo>> findBookedFromEventId(
+            @Path("id") Integer id
     );
 
 
