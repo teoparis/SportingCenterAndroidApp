@@ -32,6 +32,11 @@ public interface API {
             @Path("id") Integer id
     );
 
+    @POST("trainer/setuserspresence/{id}")
+    Call<ResponseBody> setUsersPresence(
+            @Path("id") Integer id,
+            @Body List<UserTwo> usersList);
+
 
 
 }

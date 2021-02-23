@@ -15,6 +15,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -87,9 +91,31 @@ public class DashboardActivity extends AppCompatActivity {
             TextView nome = (TextView)convertView.findViewById(R.id.textViewName);
             TextView numero = (TextView)convertView.findViewById(R.id.textViewNumber);
             com.example.sportingcenterandroidapp.ResponseEvento c = getItem(position);
-            nome.setText(c.getTitle()+"    "+c.getNumber());
-            numero.setText(c.getInizio());
+            nome.setText(c.getTitle());
+            numero.setText(toStringData(c.getInizio()));
+            /**
+            String stringDataEventoNonReversed = c.getInizio();
+            String stringDataEvento = aggiustaStringData(stringDataEventoNonReversed);
+            DateFormat dateFormat= new SimpleDateFormat("yyyy-MM-ddHH:mm:ss");
+            try {
+                Date data = dateFormat.parse(stringDataEventoNonReversed);
+                numero.setText(""+data.getDate()+"/"+(data.getMonth()+1)+"/"+data.getYear()+"    Ora Inizio:"+data.getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            } **/
+
+
             return convertView;
         }
+    }
+    private String toStringData(String stringaData) {
+        String[] arrayString = stringaData.split("T");
+        String stringaDataAggiustata = "Data: "+aggiustaStringData(arrayString[0]) + "  Ora Inizio: " + arrayString[1].split(":")[0]+":"+arrayString[1].split(":")[1];
+        return stringaDataAggiustata;
+    }
+    private String aggiustaStringData(String stringaData) {
+        String[] arrayString = stringaData.split("-");
+        String stringaDataAggiustata = arrayString[2] + "-" + arrayString[1] + "-" + arrayString[0];
+        return stringaDataAggiustata;
     }
 }

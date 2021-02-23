@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_light"
+    android:background="@color/colorSecondary"
     android:padding="20dp"
     tools:context=".MainActivity">
 
@@ -13,6 +13,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
         android:fontFamily="cursive"
         android:gravity="center"
         android:padding="10dp"
@@ -24,14 +25,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:layout_width="281dp"
         android:layout_height="83dp"
-        android:layout_marginTop="228dp"
+        android:layout_marginTop="96dp"
         android:gravity="center"
         android:text="COACH APPLICATION"
-        android:textColor="#656262"
+        android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,12 +40,23 @@
 
     <ImageView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="113dp"
         android:layout_gravity="center"
-        android:scaleType="center"
-        android:src="@drawable/gym2"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="50dp" />
+        android:scaleType="fitEnd"
+        android:src="@drawable/gym7"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-10dp"
+        tools:layout_editor_absoluteY="406dp" />
+
+    <ImageView
+        android:layout_width="136dp"
+        android:layout_height="145dp"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        android:src="@drawable/gym1"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="396dp" />
 
     <Button
         android:id="@+id/btnToRegister"

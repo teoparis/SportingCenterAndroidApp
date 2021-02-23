@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_light"
+    android:background="@color/colorSecondary"
     android:padding="20dp"
     tools:context=".PrenotatiActivity">
 
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="  LISTA PRENOTATI"
-            android:textColor="#324BED"
+            android:textColor="@color/colorAccent"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,21 +51,28 @@
 
         <ListView
             android:id="@+id/listViewDemo2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         </ListView>
+    </LinearLayout>
+
         <Button
             android:id="@+id/btshow"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="showSelectedItems"
-            android:text="Show selected items"
-            />
+            android:text="Salva le presenze"
+            android:background="@drawable/roundedbutton"
+            android:textColor="@android:color/background_dark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
 
 
-    </LinearLayout>
+            tools:ignore="MissingConstraints" />
 
 
 

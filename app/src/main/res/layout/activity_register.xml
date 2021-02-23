@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_light"
+    android:background="@color/colorSecondary"
     android:padding="20dp"
     tools:context=".RegisterActivity">
 
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="COACH REGISTRATION"
-        android:textColor="#676666"
+        android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +113,7 @@
         android:layout_marginTop="156dp"
         android:gravity="center"
         android:text="Already a user?\nClick here to login"
-        android:textColor="#6A6969"
+        android:textColor="#D6D6D6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
