@@ -8,7 +8,6 @@
     android:padding="20dp"
     tools:context=".MainActivity">
 
-
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
@@ -57,19 +56,6 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="29dp"
         tools:layout_editor_absoluteY="396dp" />
-
-    <Button
-        android:id="@+id/btnToRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/roundedbutton"
-        android:text="REGISTRATI"
-        android:textColor="@android:color/background_dark"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnToLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnToLogin"
