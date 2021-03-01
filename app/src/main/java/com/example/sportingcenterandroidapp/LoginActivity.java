@@ -33,12 +33,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.tvRegisterLink).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(com.example.sportingcenterandroidapp.LoginActivity.this, RegisterActivity.class));
-            }
-        });
     }
 
     private void loginUser() {
