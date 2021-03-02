@@ -88,6 +88,8 @@ public class PrenotatiActivity extends AppCompatActivity {
                 }
             });
         }
+
+
     }
     public class CustomAdapter extends ArrayAdapter<UserTwo> {
 

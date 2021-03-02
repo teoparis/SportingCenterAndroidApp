@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(response!=null){
                     String token = response.body().getAccessToken();
                     com.example.sportingcenterandroidapp.UserTwo user = response.body().getUser();
-                    if(user.getRoles().contains("ROLE_ADMIN"))
+                    if(user.getRoles().contains("ROLE_MODERATOR"))
                     {
                         SharedPreferences preferences = com.example.sportingcenterandroidapp.LoginActivity.this.getSharedPreferences("sporting_center", Context.MODE_PRIVATE);
                         preferences.edit().putString("token",token).apply();

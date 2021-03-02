@@ -34,7 +34,7 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         SharedPreferences preferences= com.example.sportingcenterandroidapp.DashboardActivity.this.getSharedPreferences("sporting_center",Context.MODE_PRIVATE);
-        String accessToken  = preferences.getString("token",null);//second parameter default value.
+        final String accessToken  = preferences.getString("token",null);//second parameter default value.
 
 
         Call<List<com.example.sportingcenterandroidapp.ResponseEvento>> call = com.example.sportingcenterandroidapp.RetrofitClient
@@ -54,10 +54,43 @@ public class DashboardActivity extends AppCompatActivity {
                     final List<ResponseEvento> finalList = list;
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Intent intent = new Intent(context, PrenotatiActivity.class);
-                            intent.putExtra("evento", finalList.get(i).getId());
-                            startActivity(intent);
+                        public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+
+
+                            Call<List<UserTwo>> call = com.example.sportingcenterandroidapp.RetrofitClient
+                                    .getInstance(com.example.sportingcenterandroidapp.RetrofitClient.CALENDAR_URL, accessToken)
+                                    .getAPI()
+                                    .findBookedFromEventId(finalList.get(i).getId());
+
+                            call.enqueue(new Callback<List<UserTwo>>() {
+                                @Override
+                                public void onResponse(Call<List<com.example.sportingcenterandroidapp.UserTwo>> call, Response<List<UserTwo>> response) {
+                                    if(response!=null){
+                                        List<com.example.sportingcenterandroidapp.UserTwo> list = new LinkedList<UserTwo>();
+                                        list=response.body();
+                                        if(list.isEmpty())
+                                        {
+                                            Toast.makeText(com.example.sportingcenterandroidapp.DashboardActivity.this, "Non ci sono prenotati a cui prendere presenze! Seleziona un'altra attività.", Toast.LENGTH_LONG).show();
+                                        }
+                                        else{
+                                            Intent intent = new Intent(context, PrenotatiActivity.class);
+                                            intent.putExtra("evento", finalList.get(i).getId());
+                                            startActivity(intent);
+                                        }
+
+                                    } else {
+                                        Toast.makeText(com.example.sportingcenterandroidapp.DashboardActivity.this, "Errore nel recupero dei dati!", Toast.LENGTH_LONG).show();
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<List<com.example.sportingcenterandroidapp.UserTwo>> call, Throwable t) {
+                                    Toast.makeText(com.example.sportingcenterandroidapp.DashboardActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+
                         }
                     });
 
@@ -93,17 +126,6 @@ public class DashboardActivity extends AppCompatActivity {
             com.example.sportingcenterandroidapp.ResponseEvento c = getItem(position);
             nome.setText(c.getTitle());
             numero.setText(toStringData(c.getInizio()));
-            /**
-            String stringDataEventoNonReversed = c.getInizio();
-            String stringDataEvento = aggiustaStringData(stringDataEventoNonReversed);
-            DateFormat dateFormat= new SimpleDateFormat("yyyy-MM-ddHH:mm:ss");
-            try {
-                Date data = dateFormat.parse(stringDataEventoNonReversed);
-                numero.setText(""+data.getDate()+"/"+(data.getMonth()+1)+"/"+data.getYear()+"    Ora Inizio:"+data.getTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            } **/
-
 
             return convertView;
         }
